@@ -12,7 +12,7 @@ A Spring RESTful web service for CRUD operations on books and authors.
 1. Book:
   * GET ```http://localhost:8765/books``` : gets all books
   * GET ```http://localhost:8765/books/{id}``` : gets book with id ```id```
-  * POST ```http://localhost:8765/books``` : adds a new book (see ```com.library.book.model.Book```) and author (if author entry is not present)
+  * POST ```http://localhost:8765/books``` : adds a new book (see ```com.library.book.model.Book```) and author (if authorId or author fields have been defined)
   * PUT ```http://localhost:8765/books``` : updates a book if it exists, otherwise adds a new one
   * GET ```http://localhost:8765/search/books/{search}``` : search with search query ```search``` which can also have multiple queries separated by ```;``` (like ```harry;rothfuss```)
 2. Author:
