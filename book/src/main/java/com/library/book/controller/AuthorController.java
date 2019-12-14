@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,17 +29,20 @@ public class AuthorController {
 	
 	
 	@GetMapping("/authors")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	List<Author> getAuthors(){
 		return authorRepository.findAll();
 	}
 	
 	@GetMapping("/authors/{id}")
+	@Secured({"ROLE_USER", "ROLE_ADMIN"})
 	Author getAuthorById(@PathVariable Long id) {
 		return authorRepository.findById(id)
 				.orElseThrow(() -> new AuthorNotFoundException(id));
 	}
 	
 	@PostMapping("/authors")
+	@Secured({"ROLE_ADMIN", "ROLE_ADMIN"})
 	Author saveAuthorAndBooks(@RequestBody Author author) {
 		Set<Book> bookList = author.getBooks();
 		
