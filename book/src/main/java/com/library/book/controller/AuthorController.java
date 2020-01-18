@@ -29,20 +29,20 @@ public class AuthorController {
 	
 	
 	@GetMapping("/authors")
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
+	@Secured({"ROLE_USER"})
 	List<Author> getAuthors(){
 		return authorRepository.findAll();
 	}
 	
 	@GetMapping("/authors/{id}")
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
+	@Secured({"ROLE_USER"})
 	Author getAuthorById(@PathVariable Long id) {
 		return authorRepository.findById(id)
 				.orElseThrow(() -> new AuthorNotFoundException(id));
 	}
 	
 	@PostMapping("/authors")
-	@Secured({"ROLE_ADMIN", "ROLE_ADMIN"})
+	@Secured({"ROLE_ADMIN"})
 	Author saveAuthorAndBooks(@RequestBody Author author) {
 		Set<Book> bookList = author.getBooks();
 		

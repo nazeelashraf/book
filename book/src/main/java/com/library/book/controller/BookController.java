@@ -38,7 +38,7 @@ public class BookController {
 	private AuthorRepository authorRepository;
 	
 	@GetMapping("/books")
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
+	@Secured({"ROLE_USER"})
 	List<Book> findAll(){
 		return bookRepository.findAll(); 
 	}
@@ -57,7 +57,7 @@ public class BookController {
 	}
 	
 	@GetMapping("/books/{id}")
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
+	@Secured({"ROLE_USER"})
 	Book findOne(@PathVariable Long id) {
 		return bookRepository.findById(id)
 				.orElseThrow(() -> new BookNotFoundException(id));
@@ -112,7 +112,7 @@ public class BookController {
 	}
 	
 	@GetMapping("/search/books/{search}")
-	@Secured({"ROLE_USER", "ROLE_ADMIN"})
+	@Secured({"ROLE_USER"})
 	Set<Book> searchAll(@PathVariable String search) {
 		Set<Book> results = new HashSet<>();
 		String[] queries = search.toLowerCase().split(";");

@@ -57,7 +57,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		
 		final String authorities = authResult.getAuthorities().stream()
 					.map(GrantedAuthority::getAuthority)
-					.collect(Collectors.joining(", "));
+					.collect(Collectors.joining(","));
 		
 		String token = JWT.create()
 					.withSubject(user.getUsername())
